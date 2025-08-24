@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Task } from "./task/task";
 import { userTask } from './task/userTask.model';
 import { NewTask } from '../new-task/new-task';
+import { TaskToAdd } from '../new-task/new-task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -31,4 +32,16 @@ export class Tasks {
 
   /** Method called when the 'cancel' event is received from the 'new-task' component in order to close the 'Add New Task' dialog */
   onCancelAddTask() { this.isAddingTask = false; }
+
+  /** Method called when the 'add' event is received from the 'new-task' component in order to create a new task */
+  onAddTask(newTask: TaskToAdd) {
+    this.tasks.unshift({
+      id: new Date().getTime().toString(),
+      userId: this.userId,
+      title: newTask.title,
+      summary: newTask.summary,
+      dueDate: newTask.date
+    });
+    this.isAddingTask = false;
+  }
 }
