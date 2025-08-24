@@ -2,7 +2,7 @@
   <header>
     <h2>{{userName}}</h2>
     <menu>
-      <button>Add Task</button>
+      <button (click)="onAddingTask()">Add Task</button>
     </menu>
   </header>
   <ul>
@@ -13,3 +13,7 @@
     }
   </ul>
 </section>
+
+@if (isAddingTask) {
+  <app-new-task (cancel)="onCancelAddTask()"/>
+}
